@@ -43,6 +43,7 @@ export default function RiddleApp() {
           <a
             href="https://github.com/xenonv1/"
             target="_blank"
+            rel="noreferrer"
           >
             nb
           </a>{" "}
@@ -53,6 +54,7 @@ export default function RiddleApp() {
           <a
             href="https://riddles-api.vercel.app/"
             target="_blank"
+            rel="noreferrer"
           >
             riddles api
           </a>{" "}
@@ -60,6 +62,7 @@ export default function RiddleApp() {
           <a
             href="https://github.com/nkilm"
             target="_blank"
+            rel="noreferrer"
           >
             Nikhil Mohite
           </a>
