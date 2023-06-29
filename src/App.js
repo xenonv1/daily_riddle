@@ -8,14 +8,46 @@ export default function RiddleApp() {
   const [showAnswer, toggleShowAnswer] = useState(false);
 
   useEffect(() => {
-    axios.get("https://riddles-api.vercel.app/random").then((res) => {
-      setRiddle(res.data.riddle);
-      setAnswer(res.data.answer);
-    });
+    alert(
+      "This site uses cookies for basic functionalities. Our cookies will never gather any personal information eg. name, ip, ...",
+    );
+
+    if (!document.cookie) {
+      axios.get("https://riddles-api.vercel.app/random").then((res) => {
+        setRiddle(res.data.riddle);
+        setAnswer(res.data.answer);
+
+        setCookie("riddle", res.data.riddle);
+        setCookie("answer", res.data.answer);
+      });
+    } else {
+      const cookies = document.cookie;
+
+      const cookiesSplit = cookies.split(";");
+
+      let cookieValues = [];
+      cookiesSplit.forEach((item) => {
+        const itemSplit = item.split("=");
+
+        cookieValues.push(itemSplit[1]);
+      });
+
+      setRiddle(cookieValues[0]);
+      setAnswer(cookieValues[1]);
+    }
   }, []);
 
   function revealAnswer() {
     toggleShowAnswer(!showAnswer);
+  }
+
+  function setCookie(name, value) {
+    let date = new Date();
+    date.setDate(date.getDate() + 1);
+    date.setHours(0, 0, 0, 0);
+    const expires = date.toUTCString();
+
+    document.cookie = `${name}=${value};expires=${expires};`;
   }
 
   return (
